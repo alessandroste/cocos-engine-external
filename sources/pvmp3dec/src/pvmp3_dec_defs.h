@@ -54,6 +54,10 @@
 ; Define module specific macros here
 ----------------------------------------------------------------------------*/
 #define module(x, POW2)   ((x)&(POW2-1))
+<<<<<<< HEAD
+=======
+#define OSCL_UNUSED_ARG(x) (void)(x)
+>>>>>>> 8966fe42 (compatibility with cocos 4)
 
 /*----------------------------------------------------------------------------
 ; DEFINES

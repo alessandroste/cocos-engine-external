@@ -20,6 +20,7 @@ add_library(freetype STATIC IMPORTED GLOBAL)
 
 set_target_properties(freetype PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/freetype.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/freetype
 )
 
 add_library(glew32 SHARED IMPORTED GLOBAL)
@@ -56,6 +57,7 @@ add_library(jpeg STATIC IMPORTED GLOBAL)
 
 set_target_properties(jpeg PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/jpeg.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/jpeg
 )
 
 add_library(mpg123 SHARED IMPORTED GLOBAL)
@@ -78,6 +80,7 @@ add_library(png SHARED IMPORTED GLOBAL)
 set_target_properties(png PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/libpng16.dll
   IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/libpng16.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/png
 )
 
 add_library(ssl STATIC IMPORTED GLOBAL)
@@ -111,6 +114,7 @@ add_library(webp STATIC IMPORTED GLOBAL)
 
 set_target_properties(webp PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/webp.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/webp
 )
 
 add_library(zlib SHARED IMPORTED GLOBAL)
@@ -230,9 +234,17 @@ else()
   set(PhysXSDK)
 endif()
 
+add_library(glfw3 SHARED IMPORTED GLOBAL)
+set_target_properties(glfw3 PROPERTIES
+  IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/glfw3.dll
+  IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/glfw3dll.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/glfw3
+)
+
 list(APPEND CC_EXTERNAL_LIBS
     freetype
     glew32
+    glfw3
     iconv
     crypto
     curl
@@ -249,9 +261,9 @@ list(APPEND CC_EXTERNAL_LIBS
     sqlite3
     zlib
     websockets
-    SDL2
-    SDL2Main
-    tcmalloc
+    # SDL2
+    # SDL2Main
+    # tcmalloc
     ${glslang_libs_name}
     ${tbb_libs_name}
     ${PhysXSDK}

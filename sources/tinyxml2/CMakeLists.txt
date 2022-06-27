@@ -22,10 +22,3 @@ if(WINDOWS)
     target_compile_definitions(${target_name} PRIVATE CC_STATIC)
   endif()
 endif()
-
-set_target_properties(${target_name}
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-    FOLDER "External"
-)

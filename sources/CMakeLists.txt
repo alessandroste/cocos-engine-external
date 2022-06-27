@@ -21,9 +21,9 @@ set(CC_EXTERNAL_SOURCES
 # endif()
 
 # add dependent boost libs
-if(NOT NX)
-  include(${CMAKE_CURRENT_LIST_DIR}/boost-source/boost.cmake)
-endif()
+# if(NOT NX)
+#   include(${CMAKE_CURRENT_LIST_DIR}/boost-source/boost.cmake)
+# endif()
 
 if(ANDROID AND CC_ENABLE_SWAPPY)
 

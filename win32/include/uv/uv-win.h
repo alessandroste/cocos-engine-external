@@ -237,8 +237,7 @@ typedef CRITICAL_SECTION uv_mutex_t;
  */
 
 typedef union {
-    <<<<<< < HEAD
-        CONDITION_VARIABLE cond_var;
+    CONDITION_VARIABLE cond_var;
     struct {
         unsigned int waiters_count;
         CRITICAL_SECTION waiters_count_lock;
@@ -274,56 +273,13 @@ typedef struct {
 
 typedef struct {
     DWORD tls_index;
-    ====== =
-        CONDITION_VARIABLE cond_var;
-    struct {
-        unsigned int waiters_count;
-        CRITICAL_SECTION waiters_count_lock;
-        HANDLE signal_event;
-        HANDLE broadcast_event;
-    } fallback;
-} uv_cond_t;
-
-typedef union {
-    struct {
-        unsigned int num_readers_;
-        CRITICAL_SECTION num_readers_lock_;
-        HANDLE write_semaphore_;
-    } state_;
-    /* TODO: remove me in v2.x. */
-    struct {
-        SRWLOCK unused_;
-    } unused1_;
-    /* TODO: remove me in v2.x. */
-    struct {
-        uv_mutex_t unused1_;
-        uv_mutex_t unused2_;
-    } unused2_;
-} uv_rwlock_t;
-
-typedef struct {
-    unsigned int n;
-    unsigned int count;
-    uv_mutex_t mutex;
-    uv_sem_t turnstile1;
-    uv_sem_t turnstile2;
-} uv_barrier_t;
-
-typedef struct {
-    DWORD tls_index;
-    >>>>>> > 24ff1a9fb3d1f93c671d18e0e6f7e4cf08713975
 } uv_key_t;
 
 #define UV_ONCE_INIT { 0, NULL }
 
 typedef struct uv_once_s {
-    <<<<<< < HEAD
-        unsigned char ran;
+    unsigned char ran;
     HANDLE event;
-    ====== =
-        unsigned char ran;
-    HANDLE event;
-    >>>>>> > 24ff1a9fb3d1f93c671d18e0e6f7e4cf08713975
 } uv_once_t;
 
 /* Platform-specific definitions for uv_spawn support. */
@@ -331,13 +287,8 @@ typedef unsigned char uv_uid_t;
 typedef unsigned char uv_gid_t;
 
 typedef struct uv__dirent_s {
-    <<<<<< < HEAD
-        int d_type;
+    int d_type;
     char d_name[1];
-    ====== =
-        int d_type;
-    char d_name[1];
-    >>>>>> > 24ff1a9fb3d1f93c671d18e0e6f7e4cf08713975
 } uv__dirent_t;
 
 #define HAVE_DIRENT_TYPES
@@ -352,13 +303,8 @@ typedef struct uv__dirent_s {
 /* Platform-specific definitions for uv_dlopen support. */
 #define UV_DYNAMIC FAR WINAPI
 typedef struct {
-    <<<<<< < HEAD
-        HMODULE handle;
+    HMODULE handle;
     char* errmsg;
-    ====== =
-        HMODULE handle;
-    char* errmsg;
-    >>>>>> > 24ff1a9fb3d1f93c671d18e0e6f7e4cf08713975
 } uv_lib_t;
 
 RB_HEAD(uv_timer_tree_s, uv_timer_s);

@@ -25,15 +25,15 @@ set(CC_EXTERNAL_SOURCES
 #   include(${CMAKE_CURRENT_LIST_DIR}/boost-source/boost.cmake)
 # endif()
 
-if(ANDROID AND CC_ENABLE_SWAPPY)
+# if(ANDROID AND CC_ENABLE_SWAPPY)
 
-include(${CMAKE_CURRENT_LIST_DIR}/Swappy/src/swappy/CMakeLists.txt)
-list(APPEND CC_EXTERNAL_LIBS
-  swappy
-)
-add_definitions(-DCC_SWAPPY_ENABLED)
+# include(${CMAKE_CURRENT_LIST_DIR}/Swappy/src/swappy/CMakeLists.txt)
+# list(APPEND CC_EXTERNAL_LIBS
+#   swappy
+# )
+# add_definitions(-DCC_SWAPPY_ENABLED)
 
-endif()
+# endif()
 
 if(ANDROID OR OHOS OR NX)
 #   include(${CMAKE_CURRENT_LIST_DIR}/pvmp3dec/CMakeLists.txt)

@@ -260,9 +260,9 @@ list(APPEND CC_EXTERNAL_LIBS
     OpenAL32
     sqlite3
     websockets
-    SDL2
-    SDL2Main
-    tcmalloc
+    # SDL2
+    # SDL2Main
+    # tcmalloc
     ${glslang_libs_name}
     ${tbb_libs_name}
     ${PhysXSDK}

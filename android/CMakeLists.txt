@@ -1,4 +1,3 @@
-
 add_library(crypto STATIC IMPORTED GLOBAL)
 set_target_properties(crypto PROPERTIES
   IMPORTED_LOCATION ${platform_spec_path}/libcrypto.a
@@ -13,11 +12,13 @@ set_target_properties(freetype PROPERTIES
 add_library(jpeg STATIC IMPORTED GLOBAL)
 set_target_properties(jpeg PROPERTIES
   IMPORTED_LOCATION ${platform_spec_path}/libjpeg.a
+  INTERFACE_INCLUDE_DIRECTORIES ${platform_spec_path}/include/jpeg
 )
 
 add_library(png STATIC IMPORTED GLOBAL)
 set_target_properties(png PROPERTIES
   IMPORTED_LOCATION ${platform_spec_path}/libpng.a
+  INTERFACE_INCLUDE_DIRECTORIES ${platform_spec_path}/include/png
 )
 
 add_library(ssl STATIC IMPORTED GLOBAL)
@@ -40,17 +41,19 @@ set_target_properties(openxr PROPERTIES
 add_library(webp STATIC IMPORTED GLOBAL)
 set_target_properties(webp PROPERTIES
   IMPORTED_LOCATION ${platform_spec_path}/libwebp.a
+  INTERFACE_INCLUDE_DIRECTORIES ${platform_spec_path}/include/webp
 )
 
 add_library(websockets STATIC IMPORTED GLOBAL)
 set_target_properties(websockets PROPERTIES
   IMPORTED_LOCATION ${platform_spec_path}/libwebsockets.a
+  INTERFACE_INCLUDE_DIRECTORIES ${platform_spec_path}/include/websockets
 )
 
-add_library(z STATIC IMPORTED GLOBAL)
-set_target_properties(z PROPERTIES
-  IMPORTED_LOCATION ${platform_spec_path}/libz.a
-  INTERFACE_INCLUDE_DIRECTORIES ${platform_spec_path}/include/zlib
+add_library(zlib STATIC IMPORTED GLOBAL)
+set_target_properties(zlib PROPERTIES
+    IMPORTED_LOCATION ${platform_spec_path}/libz.a
+    INTERFACE_INCLUDE_DIRECTORIES ${platform_spec_path}/include/zlib
 )
 
 add_library(android_platform STATIC
@@ -92,9 +95,6 @@ endif()
 
 if(USE_SOCKET)
     list(APPEND CC_EXTERNAL_LIBS
-        websockets
-        ssl
-        crypto
     )
 endif()
 
@@ -141,17 +141,19 @@ list(APPEND CC_EXTERNAL_LIBS
     uv
     webp
     android_platform
+    websockets
+    ssl
+    crypto
+    zlib
     ${glslang_libs_name}
     ${tbb_libs_name}
     ${PhysXSDK}
 )
 
-set(ZLIB z)
-if(NOT USE_MODULES)
-  list(APPEND CC_EXTERNAL_LIBS ${ZLIB}  ${se_libs_name})
-endif()
-
-
+# find_package(ZLIB REQUIRED)
+# list(APPEND CC_EXTERNAL_LIBS
+#     ZLIB::ZLIB
+# )
 
 list(APPEND CC_EXTERNAL_INCLUDES
   ${platform_spec_path}/include

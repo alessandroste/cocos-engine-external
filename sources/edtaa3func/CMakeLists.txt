@@ -1,6 +1,12 @@
+cmake_minimum_required(VERSION 3.6)
 
+set(lib_name edtaa3func)
+set(target_name ${lib_name})
 
-add_library(edtaa3func 
-    ${CMAKE_CURRENT_LIST_DIR}/edtaa3func.h
-    ${CMAKE_CURRENT_LIST_DIR}/edtaa3func.cpp
+project(${lib_name})
+
+add_library(${target_name} STATIC
+  edtaa3func.cpp
 )
+
+target_include_directories(${target_name} PUBLIC .)

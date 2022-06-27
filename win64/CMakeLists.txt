@@ -20,7 +20,6 @@ add_library(freetype STATIC IMPORTED GLOBAL)
 
 set_target_properties(freetype PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/freetype.lib
-  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/freetype
 )
 
 add_library(glew32 SHARED IMPORTED GLOBAL)
@@ -28,6 +27,7 @@ add_library(glew32 SHARED IMPORTED GLOBAL)
 set_target_properties(glew32 PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/glew32.dll
   IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/glew32.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/gles
 )
 
 add_library(iconv SHARED IMPORTED GLOBAL)
@@ -39,13 +39,11 @@ set_target_properties(iconv PROPERTIES
   IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/charset.lib
 )
 
-
 add_library(crypto STATIC IMPORTED GLOBAL)
 
 set_target_properties(crypto PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/libcrypto.lib
 )
-
 
 add_library(curl SHARED IMPORTED GLOBAL)
 
@@ -82,7 +80,6 @@ set_target_properties(png PROPERTIES
   IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/libpng16.lib
 )
 
-
 add_library(ssl STATIC IMPORTED GLOBAL)
 
 set_target_properties(ssl PROPERTIES
@@ -95,7 +92,6 @@ set_target_properties(uv PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/libuv.lib
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/uv
 )
-
 
 add_library(vorbis SHARED IMPORTED GLOBAL)
 
@@ -132,7 +128,6 @@ set_target_properties(websockets PROPERTIES
   IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/websockets.lib
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/websockets
 )
-
 
 add_library(OpenAL32 STATIC IMPORTED GLOBAL)
 
@@ -197,7 +192,7 @@ elseif(USE_SE_V8)
 
     set(se_libs_name v8)
 else()
-    message(FATAL_ERROR "Only V8 is supported!")
+    # message(FATAL_ERROR "Only V8 is supported!")
 endif()
 
 ############################# glslang #############################

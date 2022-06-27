@@ -20,6 +20,7 @@ add_library(freetype STATIC IMPORTED GLOBAL)
 
 set_target_properties(freetype PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/freetype.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/freetype
 )
 
 add_library(glew32 SHARED IMPORTED GLOBAL)
@@ -30,13 +31,6 @@ set_target_properties(glew32 PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/gles
 )
 
-add_library(glfw3 STATIC IMPORTED GLOBAL)
-
-set_target_properties(glew32 PROPERTIES
-  IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/glfw3.lib
-  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/glfw3
-)
-
 add_library(iconv SHARED IMPORTED GLOBAL)
 
 set_target_properties(iconv PROPERTIES
@@ -44,14 +38,12 @@ set_target_properties(iconv PROPERTIES
   IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/libiconv.lib
 )
 
-
 add_library(crypto SHARED IMPORTED GLOBAL)
 
 set_target_properties(crypto PROPERTIES
   IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/libcrypto.lib
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/libcrypto-1_1.dll
 )
-
 
 add_library(curl SHARED IMPORTED GLOBAL)
 
@@ -90,7 +82,6 @@ set_target_properties(png PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/png
 )
 
-
 add_library(ssl SHARED IMPORTED GLOBAL)
 
 set_target_properties(ssl PROPERTIES
@@ -104,7 +95,6 @@ set_target_properties(uv PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/libuv.lib
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/uv
 )
-
 
 add_library(vorbis SHARED IMPORTED GLOBAL)
 
@@ -143,7 +133,6 @@ set_target_properties(websockets PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/websockets
 )
 
-
 add_library(OpenAL32 SHARED IMPORTED GLOBAL)
 
 set_target_properties(OpenAL32 PROPERTIES
@@ -158,7 +147,6 @@ set_target_properties(sqlite3 PROPERTIES
   IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/sqlite3.dll
   IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/libs/sqlite3.lib
 )
-
 
 add_library(SDL2 SHARED IMPORTED GLOBAL)
 set_target_properties(SDL2 PROPERTIES
@@ -247,6 +235,12 @@ else()
   set(PhysXSDK)
 endif()
 
+add_library(glfw3 STATIC IMPORTED GLOBAL)
+set_target_properties(glfw3 PROPERTIES
+  IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/libs/glfw3.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_LIST_DIR}/include/glfw3
+)
+
 list(APPEND CC_EXTERNAL_LIBS
     freetype
     glew32
@@ -274,10 +268,9 @@ list(APPEND CC_EXTERNAL_LIBS
     ${PhysXSDK}
 )
 
-
-set(ZLIB zlib)
 if(NOT USE_MODULES)
-  list(APPEND CC_EXTERNAL_LIBS ${ZLIB}
+  list(APPEND CC_EXTERNAL_LIBS
+    # zlib
     ${se_libs_name}
   )
 endif()

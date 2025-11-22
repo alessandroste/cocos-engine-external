@@ -52,7 +52,7 @@ typedef voidp unzFile;
 #define UNZ_CRCERROR                    (-105)
 #define UNZ_BADPASSWORD                 (-106)
 
-namespace cc {
+namespace cocos2d {
 /* unz_global_info structure contain global data about the ZIPfile
    These data comes from the end of central dir */
 typedef struct unz_global_info64_s
@@ -298,7 +298,7 @@ ZEXTERN int ZEXPORT unzEndOfFile(unzFile file);
 
 /***************************************************************************/
 
-} // end of namespace cc
+} // end of namespace cocos2d
 
 
 #endif /* _UNZ_H */

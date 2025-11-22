@@ -47,7 +47,7 @@
 #  include "crypt.h"
 #endif
 
-namespace cc {
+namespace cocos2d {
 
 #define DISKHEADERMAGIC             (0x08074b50)
 #define LOCALHEADERMAGIC            (0x04034b50)
@@ -1987,4 +1987,5 @@ ZEXTERN int ZEXPORT unzEndOfFile(unzFile file)
     return 0;
 }
 
-} // end of namespace cc
+} // end of namespace cocos2d
+
